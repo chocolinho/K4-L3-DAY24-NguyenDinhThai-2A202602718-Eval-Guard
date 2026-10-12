@@ -8,7 +8,7 @@ Trưởng nhóm/người nộp: Nguyễn Đình Thái - 2A202602718
 
 Ngày lab/deadline áp dụng: 12/10/2026 23:59 — Asia/Ho_Chi_Minh (UTC+07:00)
 
-Commit dùng để chấm: b9f8d5b53bc4f94899aa30fdc52c30be0e96eb6d
+Commit dùng để chấm: 0d771e8b2efa0175a9e0fe9880d56941b51c8e42
 
 Mỗi nhóm nộp một repo. Điền đủ thành viên và một mục INDIVIDUAL cho từng người.
 Thêm/xóa rows để khớp nhóm thật; mẫu ba rows không ép nhóm phải có ba người.
