@@ -6,7 +6,15 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # --- API Keys ---
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
+OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY", "").strip()
+OPENROUTER_BASE_URL = os.getenv("OPENROUTER_BASE_URL", "https://openrouter.ai/api/v1").strip()
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", OPENROUTER_API_KEY).strip()
+OPENAI_BASE_URL = os.getenv("OPENAI_BASE_URL", OPENROUTER_BASE_URL).strip()
+if OPENAI_BASE_URL:
+    os.environ["OPENAI_BASE_URL"] = OPENAI_BASE_URL
+if OPENAI_API_KEY:
+    os.environ["OPENAI_API_KEY"] = OPENAI_API_KEY
+
 HF_TOKEN = os.getenv("HF_TOKEN", "")  # Optional: for HuggingFace models
 
 # --- Qdrant (same as Day 18) ---
@@ -18,6 +26,7 @@ NAIVE_COLLECTION = "lab24_naive"
 # --- Embedding (same as Day 18) ---
 EMBEDDING_MODEL = "BAAI/bge-m3"
 EMBEDDING_DIM = 1024
+RAGAS_EMBEDDING_MODEL = os.getenv("RAGAS_EMBEDDING_MODEL", EMBEDDING_MODEL).strip()
 
 # --- Chunking (same as Day 18) ---
 HIERARCHICAL_PARENT_SIZE = 2048
@@ -43,11 +52,15 @@ CLEAN_SET_PATH = os.path.join(FIXTURES_DIR, "clean_set_8.json")
 OUTPUT_SET_PATH = os.path.join(FIXTURES_DIR, "output_set_4.json")
 GUARDRAILS_CONFIG_DIR = os.path.join(ROOT_DIR, "guardrails")
 PAIR_QUESTION_IDS = (1, 5, 12, 21, 41)
+CACHE_DIR = os.path.join(ROOT_DIR, ".cache", "lab24")
 
-# --- LLM Judge ---
-GENERATION_MODEL = "gpt-4o-mini"
-JUDGE_MODEL = "gpt-4o-mini"
+# --- LLM / Judge ---
+GENERATION_MODEL = os.getenv("GENERATION_MODEL", "gpt-4o-mini")
+JUDGE_MODEL = os.getenv("JUDGE_MODEL", "gpt-4o-mini")
+OPENROUTER_MODEL = os.getenv("LLM_MODEL", GENERATION_MODEL).strip()
+OPENROUTER_REQUEST_INTERVAL = max(0.0, float(os.getenv("OPENROUTER_REQUEST_INTERVAL", "1.0")))
 
 # --- Guardrail latency budget ---
 LATENCY_BUDGET_P95_MS = 500  # Full guard target; Task 12 currently measures input guards only.
 PRESIDIO_LANGUAGE = "en"    # Presidio base language; custom VN recognizers added via PatternRecognizer
+

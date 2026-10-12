@@ -11,3 +11,4 @@ venv/
 !.env.example
 # artifacts/*.json là bằng chứng bắt buộc của bài nộp.
 # Chỉ commit sau khi kiểm tra không có API key hoặc dữ liệu cá nhân thật.
+.cache/

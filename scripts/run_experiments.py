@@ -1,6 +1,7 @@
 """Run submitted experiments explicitly. Default tests never call paid APIs."""
 from __future__ import annotations
 
+import torch  # Preload torch and c10.dll on Windows before other native modules
 import argparse
 from pathlib import Path
 import sys
